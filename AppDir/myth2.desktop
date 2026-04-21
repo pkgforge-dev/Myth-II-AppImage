@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Myth II
+Comment="Myth II: Soulblighter"
+Exec=Myth2_64bit
+Icon=myth2
+StartupWMClass=Myth2_64bit
+Terminal=false
+Categories=Game;Adventure;RTS;

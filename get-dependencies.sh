@@ -6,21 +6,21 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-# pacman -Syu --noconfirm PACKAGESHERE
+pacman -Syu --noconfirm glu openal pipewire-audio pipewire-jack
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
 get-debloated-pkgs --add-common --prefer-nano
 
-# Comment this out if you need an AUR package
-#make-aur-package PACKAGENAME
+make-aur-package zenity-rs-bin
 
-# If the application needs to be manually built that has to be done down here
+echo "Getting app..."
+echo "---------------------------------------------------------------"
+VERSION=1.8.5
+echo "$VERSION" > ~/version
+wget "https://api.rv.pkgforge.dev/https://projectmagma.net/downloads/myth2_updates/1.8.5%20Final%20(Build%20471b)/Myth2_185_Linux.tar.gz"
+tar -xvf ./Myth2_185_Linux.tar.gz
+rm -f ./*.gz ./*.pdf ./*.txt ./Myth2_32bit ./.DS_Store
 
-# if you also have to make nightly releases check for DEVEL_RELEASE = 1
-#
-# if [ "${DEVEL_RELEASE-}" = 1 ]; then
-# 	nightly build steps
-# else
-# 	regular build steps
-# fi
+mkdir -p ./AppDir/bin
+mv -v ./plugins ./Myth2_64bit ./AppDir/bin
